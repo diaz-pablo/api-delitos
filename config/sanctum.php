@@ -47,8 +47,12 @@ return [
     |
     */
 
-    'expiration' => null,
+    // 'expiration' => null,
+    // 'expiration' => 60 * 24 * 7,
+    'expiration' => 30, // 30 minutos
+    // 'expiration' => 1, // 1 minuto
 
+    'token_type' => 'Bearer',
     /*
     |--------------------------------------------------------------------------
     | Token Prefix
