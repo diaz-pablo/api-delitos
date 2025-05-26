@@ -31,7 +31,6 @@ class DelitoController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required|exists:users,id',
             'tipo_delito_id' => 'required|exists:tipos_delitos,id',
             'fecha_ocurrencia' => 'required|date',
             'latitud' => 'required|numeric',
@@ -47,7 +46,11 @@ class DelitoController extends Controller
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $delito = Delito::create($validator->validated());
+        // Crear el delito con el user_id del token
+        $data = $validator->validated();
+        $data['user_id'] = auth()->user()->id;
+
+        $delito = Delito::create($data);
 
         return response()->json([
             'status' => true,
