@@ -97,7 +97,22 @@ class DelitoController extends Controller
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $delito->update($validator->validated());
+        $user = auth()->user();
+
+        // Opcional: verificar que el delito pertenezca al usuario autenticado
+        if ($delito->user_id !== $user->id) {
+            return response()->json([
+                'status' => false,
+                'message' => 'No autorizado para actualizar este delito',
+                'data' => null,
+                'errors' => ['auth' => ['No tenés permiso para modificar este recurso.']]
+            ], Response::HTTP_FORBIDDEN);
+        }
+
+        $data = $validator->validated();
+        $data['user_id'] = $user->id;
+
+        $delito->update($data);
 
         return response()->json([
             'status' => true,
