@@ -29,9 +29,7 @@ class DelitoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $token = $request->user()->currentAccessToken();
-        
+    {    
         $validator = Validator::make($request->all(), [
             'tipo_delito_id' => 'required|exists:tipos_delitos,id',
             'fecha_ocurrencia' => 'required|date',
