@@ -30,6 +30,8 @@ class DelitoController extends Controller
      */
     public function store(Request $request)
     {
+        $token = $request->user()->currentAccessToken();
+        
         $validator = Validator::make($request->all(), [
             'tipo_delito_id' => 'required|exists:tipos_delitos,id',
             'fecha_ocurrencia' => 'required|date',

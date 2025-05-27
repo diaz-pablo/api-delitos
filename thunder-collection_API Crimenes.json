@@ -1,0 +1,168 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "API Crimenes",
+    "collectionId": "922ef605-71e6-488f-9f5d-342852256697",
+    "dateExported": "2025-05-27T02:43:18.933Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "65b29905-c9d7-435e-b34a-d2260a9d41ee",
+            "colId": "922ef605-71e6-488f-9f5d-342852256697",
+            "containerId": "",
+            "name": "Listado de Delitos",
+            "url": "http://127.0.0.1:8000/api/delitos",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2025-05-23T02:44:47.201Z",
+            "modified": "2025-05-27T00:15:07.934Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        {
+            "_id": "c82e8538-26a5-4766-a40c-bdd11e8d5526",
+            "colId": "922ef605-71e6-488f-9f5d-342852256697",
+            "containerId": "",
+            "name": "Login",
+            "url": "http://127.0.0.1:8000/api/auth/login",
+            "method": "POST",
+            "sortNum": 15000,
+            "created": "2025-05-26T22:47:09.924Z",
+            "modified": "2025-05-27T02:15:06.123Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"password\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "08891161-341e-4ca1-bda3-bc8d1ab33be9",
+            "colId": "922ef605-71e6-488f-9f5d-342852256697",
+            "containerId": "",
+            "name": "Obtener un Delitos",
+            "url": "http://127.0.0.1:8000/api/delitos/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2025-05-23T02:45:20.745Z",
+            "modified": "2025-05-27T00:15:56.967Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|rn1Ukq6xpt43Tkcx9AGYBnhbCbvQzIhF4wUu5UQx688cecc1"
+            }
+        },
+        {
+            "_id": "6d2afaf2-ad15-4342-ad6e-e7153bde413d",
+            "colId": "922ef605-71e6-488f-9f5d-342852256697",
+            "containerId": "",
+            "name": "Crear un nuevo Delito",
+            "url": "http://127.0.0.1:8000/api/delitos",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2025-05-23T03:12:05.408Z",
+            "modified": "2025-05-27T02:36:33.323Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tipo_delito_id\": 2,\n  \"fecha_ocurrencia\": \"2025-01-01 12:00:00\",\n  \"descripcion\": \"Robo con violencia\",\n  \"latitud\": \"-22.72770401506137\",\n  \"longitud\": \"-64.32879305988716\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "9|m3vojAdHhK48WQnQqYnbUyRoN76JmhiIoFtCzoShbb364288"
+            }
+        },
+        {
+            "_id": "3507c0b8-8c4d-4810-8416-2629a97646ec",
+            "colId": "922ef605-71e6-488f-9f5d-342852256697",
+            "containerId": "",
+            "name": "Actualizar Delito",
+            "url": "http://127.0.0.1:8000/api/delitos/1",
+            "method": "PUT",
+            "sortNum": 35000,
+            "created": "2025-05-26T22:59:49.103Z",
+            "modified": "2025-05-27T02:11:35.846Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tipo_delito_id\": 1\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "2|0vEFY5cmZ5h1QlVMYzTQegC45XUlee14WLs2Dnj2763bc74c"
+            }
+        },
+        {
+            "_id": "6bb34e6c-a496-4602-9ec2-9486b25a6352",
+            "colId": "922ef605-71e6-488f-9f5d-342852256697",
+            "containerId": "",
+            "name": "Eliminar un Delito",
+            "url": "http://127.0.0.1:8000/api/delitos/1",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2025-05-23T03:17:51.678Z",
+            "modified": "2025-05-27T02:11:47.667Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "2|0vEFY5cmZ5h1QlVMYzTQegC45XUlee14WLs2Dnj2763bc74c"
+            }
+        }
+    ],
+    "ref": "LVXwQRiT8GpK9SBYJ4pgRZmzkEZaCj7nACPG23FayCVACCX9IX_w5m7wF0DkvVhPkLrKBFpXEqUWwI9qeUAY9w"
+}

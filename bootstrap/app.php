@@ -9,6 +9,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -18,12 +19,24 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // 
     })
     ->withExceptions(function (Exceptions $exceptions) {
+        // $exceptions->renderable(function (RouteNotFoundException $e, Request $request) {
+        //     // Interceptar RouteNotFoundException SOLO para API (para evitar error 500 por ruta login no encontrada)
+        //     if ($request->is('api/*')) {
+        //         return response()->json([
+        //             'status' => false,
+        //             'message' => 'No autorizado',
+        //             'data' => null,
+        //             'errors' => ['route' => [$e->getMessage()]]
+        //         ], Response::HTTP_FORBIDDEN);
+        //     }
+        // });
+
         // 401 - No autenticado: Se requiere un token de acceso para acceder a estas rutas
         $exceptions->renderable(function (AuthenticationException $e, Request $request) {
-            if ($request->is('api/*') && $request->wantsJson()) {
+            if ($request->is('api/*')) {
                 return response()->json([
                     'status' => false,
                     'message' => 'No autorizado',
@@ -35,7 +48,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // 403 - Acceso denegado: Se requiere un token de acceso con permisos para acceder a estas rutas
         $exceptions->renderable(function (AccessDeniedHttpException $e, Request $request) {
-            if ($request->is('api/*') && $request->wantsJson()) {
+            if ($request->is('api/*')) {
                 return response()->json([
                     'status' => false,
                     'message' => 'No tienes los permisos necesarios para realizar la acción',
@@ -47,7 +60,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // 404 - No encontrado
         $exceptions->renderable(function (NotFoundHttpException $e, Request $request) {
-            if ($request->is('api/*') && $request->wantsJson()) {
+            if ($request->is('api/*')) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Recurso no encontrado',
@@ -59,7 +72,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // 422 - Errores de validación de datos
         $exceptions->renderable(function (ValidationException $e, Request $request) {
-            if ($request->is('api/*') && $request->wantsJson()) {
+            if ($request->is('api/*')) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Errores de validación de datos',
@@ -71,7 +84,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // 500 - Error interno del servidor
         $exceptions->renderable(function (Throwable $e, Request $request) {
-            if ($request->is('api/*') && $request->wantsJson()) {
+            if ($request->is('api/*')) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Error interno del servidor',
