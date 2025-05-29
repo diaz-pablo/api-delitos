@@ -22,7 +22,7 @@ class DelitoController extends Controller
             'message' => 'Listado de Delitos',
             'data' => $delitos,
             'errors' => null
-        ], Response::HTTP_OK);
+        ], Response::HTTP_OK); // 200
     }
 
     /**
@@ -43,7 +43,7 @@ class DelitoController extends Controller
                 'message' => 'Error de validación de datos',
                 'data' => null,
                 'errors' => $validator->errors()
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            ], Response::HTTP_UNPROCESSABLE_ENTITY); // 422
         }
 
         // Crear el delito con el user_id del token
@@ -57,7 +57,7 @@ class DelitoController extends Controller
             'message' => 'Delito creado exitosamente',
             'data' => $delito,
             'errors' => null
-        ], Response::HTTP_CREATED);
+        ], Response::HTTP_CREATED); // 201
     }
 
     /**
@@ -72,7 +72,7 @@ class DelitoController extends Controller
             'message' => 'Delito ' . $delito->id,
             'data' => $delito,
             'errors' => null
-        ], Response::HTTP_OK);
+        ], Response::HTTP_OK); // 200
     }
 
     /**
@@ -94,7 +94,7 @@ class DelitoController extends Controller
                 'message' => 'Error de validación',
                 'data' => null,
                 'errors' => $validator->errors()
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            ], Response::HTTP_UNPROCESSABLE_ENTITY); // 422
         }
 
         $user = auth()->user();
@@ -106,7 +106,7 @@ class DelitoController extends Controller
                 'message' => 'No autorizado para actualizar este delito',
                 'data' => null,
                 'errors' => ['auth' => ['No tenés permiso para modificar este recurso.']]
-            ], Response::HTTP_FORBIDDEN);
+            ], Response::HTTP_FORBIDDEN); // 403
         }
 
         $data = $validator->validated();
@@ -119,7 +119,7 @@ class DelitoController extends Controller
             'message' => 'Delito actualizado',
             'data' => $delito->fresh()->load(['user', 'tipo_delito']),
             'errors' => null
-        ], Response::HTTP_OK);
+        ], Response::HTTP_OK); // 200
     }
 
     /**
@@ -134,6 +134,6 @@ class DelitoController extends Controller
             'message' => 'Delito eliminado correctamente',
             'data' => null,
             'errors' => null
-        ], Response::HTTP_OK);
+        ], Response::HTTP_OK); // 200
     }
 }

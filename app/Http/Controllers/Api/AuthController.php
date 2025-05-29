@@ -67,7 +67,7 @@ class AuthController extends Controller
                     'user_email' => $user->email,
                     'token' => $token->plainTextToken,
                     'token_type' => config('sanctum.token_type', 'Bearer'),
-                    'token_expiration' => config('sanctum.expiration'), // null si no usás expiración
+                    'token_expiration' => config('sanctum.expiration'),
                 ],
                 'errors' => null
             ], Response::HTTP_OK);

@@ -9,7 +9,6 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -22,18 +21,6 @@ return Application::configure(basePath: dirname(__DIR__))
         // 
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        // $exceptions->renderable(function (RouteNotFoundException $e, Request $request) {
-        //     // Interceptar RouteNotFoundException SOLO para API (para evitar error 500 por ruta login no encontrada)
-        //     if ($request->is('api/*')) {
-        //         return response()->json([
-        //             'status' => false,
-        //             'message' => 'No autorizado',
-        //             'data' => null,
-        //             'errors' => ['route' => [$e->getMessage()]]
-        //         ], Response::HTTP_FORBIDDEN);
-        //     }
-        // });
-
         // 401 - No autenticado: Se requiere un token de acceso para acceder a estas rutas
         $exceptions->renderable(function (AuthenticationException $e, Request $request) {
             if ($request->is('api/*')) {

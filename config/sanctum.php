@@ -48,7 +48,7 @@ return [
     */
 
     // 'expiration' => null,
-    // 'expiration' => 60 * 24 * 7,
+    // 'expiration' => 60 * 24 * 7, // 1 semanana
     'expiration' => 30, // 30 minutos
     // 'expiration' => 1, // 1 minuto
 
